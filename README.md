@@ -42,13 +42,13 @@ BICYCLES-SHOP/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/jp3367/BICYCLES-SHOP.git
+git clone https://github.com/Kacper-1900/BICYCLES-SHOP-2.git
 ```
 
 ### 2. Enter the backend folder
 
 ```bash
-cd BICYCLES-SHOP/backend
+cd backend
 ```
 
 ### 3. Install dependencies
@@ -60,17 +60,6 @@ npm install
 ### 4. Configure the database
 
 Create a MySQL database and configure the `.env` file with your database information.
-
-Example:
-
-```env
-PORT=3000
-DB_HOST=localhost
-DB_PORT=3306
-DB_NAME=dsw_products
-DB_USER=root
-DB_PASSWORD=
-```
 
 ### 5. Start the project
 
@@ -124,10 +113,6 @@ Create a bicycle:
 
 The API can be tested using **Postman**.
 
-The Postman collection is included in the `postman` folder.
-
 ## Author
 
-**Kacper**
-
-DAW Student
+**Kacper Jasinski**
