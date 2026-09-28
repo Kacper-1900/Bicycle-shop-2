@@ -1,3 +1,4 @@
+import { Brand } from "../brands/brand.model.js";
 import { Bicycle } from "./bicycle.model.js";
 export class BicycleService {
   static async findAll() {
@@ -6,6 +7,17 @@ export class BicycleService {
     });
   } static async findById(id: number) {
     return Bicycle.findByPk(id);
+  }
+
+  static async findEagerlyById(id: number){
+      return Bicycle.findByPk(id,{
+        include:[
+          {
+            model: Brand,
+            as: 'brand'
+          }
+        ]
+      });
   }
   static async create(data: {
     brand: string;
