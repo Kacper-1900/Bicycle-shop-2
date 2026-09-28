@@ -4,8 +4,6 @@ REST API for managing bicycles and brands.
 
 ## About the Project
 
-This project is a backend application created for the **DAW (Desarrollo de Aplicaciones Web)** course.
-
 The API allows you to:
 
 * Create, view, update and delete bicycles.
@@ -112,6 +110,8 @@ Create a bicycle:
 ## Testing
 
 The API can be tested using **Postman**.
+
+Postman link for testing: https://documenter.getpostman.com/view/58320217/2sBYB4L76N
 
 ## Author
 
