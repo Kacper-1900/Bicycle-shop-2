@@ -1,3 +1,4 @@
+import { defineAssociations } from "./models/associations.js";
 import { app } from "./app";
 import { sequelize } from "./config/database";
 import { env } from "./config/env";
@@ -9,11 +10,17 @@ import "./modules/brands/brand.model";
 async function startServer() {
   try {
 
+    defineAssociations();
+
     await sequelize.authenticate();
+
+
 
     console.log("Conexión con MySQL establecida.");
 
-    await sequelize.sync();
+    //await sequelize.sync();
+
+    await sequelize.sync({ force: true });
 
     console.log("Modelos sincronizados.");
 
