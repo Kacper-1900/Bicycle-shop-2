@@ -93,6 +93,50 @@ http://localhost:3000
 | PUT    | `/api/brands/:id` | Update a brand |
 | DELETE | `/api/brands/:id` | Delete a brand |
 
+### SQL RELATION
+
+1:N Relation
+
+```mermaid
+erDiagram
+BRAND ||--o{ BICYCLE : has
+BRAND {
+int id PK
+string name
+}
+BICYCLE {
+int id PK
+int brandId FK
+string model
+string description
+float price
+int stock
+}
+```
+
+1:1 Relation
+
+```mermaid
+erDiagram
+Bicycle ||--o| BicycleDetail : has
+Bicycle {
+number id PK
+number brandId FK
+string model
+string description
+number price
+number stock
+}
+BicycleDetail {
+number id PK
+number bicycleId FK
+string frameMaterial
+string wheelSize
+string weight
+string suspension
+}
+```
+
 ## Example
 
 Create a bicycle:

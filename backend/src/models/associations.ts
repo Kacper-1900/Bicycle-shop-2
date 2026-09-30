@@ -5,4 +5,6 @@ export function defineAssociations() {
   console.log("Associations defined"); 
   Brand.hasMany(Bicycle, { foreignKey: "brandId", as: "bicycles" });
   Bicycle.belongsTo(Brand, { foreignKey: "brandId", as: "brand" });
+  Bicycle.hasOne(BicycleDetail,{foreignKey: "bicycleId", as: "detail", onDelete: "CASCADE"});
+  BicycleDetail.belongsTo(Bicycle, {foreignKey: "bicycleId", as: "bicycle"});
 }
