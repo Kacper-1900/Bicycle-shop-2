@@ -9,6 +9,8 @@ router.get("/:id", BicycleController.getById);
 
 router.get("/eagerly/:id", BicycleController.getEagerlyById);
 
+router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
+
 router.post("/", BicycleController.create);
 
 router.put("/:id", BicycleController.update);

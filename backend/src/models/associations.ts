@@ -1,5 +1,6 @@
 import { Bicycle } from "../modules/bicycles/bicycle.model.js";
 import { Brand } from "../modules/brands/brand.model.js";
+import { BicycleDetail } from "../modules/bicycle-details/bicycle-detail.model.js";
 
 export function defineAssociations() {
   console.log("Associations defined"); 

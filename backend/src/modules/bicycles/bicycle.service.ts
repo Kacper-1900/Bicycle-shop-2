@@ -1,5 +1,6 @@
 import { Brand } from "../brands/brand.model.js";
 import { Bicycle } from "./bicycle.model.js";
+import { BicycleDetail } from "../bicycle-details/bicycle-detail.model.js";
 
 export class BicycleService {
   static async findAll() {
@@ -22,6 +23,19 @@ export class BicycleService {
       ],
     });
   }
+
+  static async findAllEagerlyByFrameMaterial(frameMaterial: string) {
+        return Bicycle.findAll({
+            include: [
+                {
+                    model: BicycleDetail,
+                    as: "detail",
+                    where: { frameMaterial },
+                },
+            ],
+            order: [["id", "ASC"]],
+        });
+    }
 
   static async create(data: {
     brandId: number;
