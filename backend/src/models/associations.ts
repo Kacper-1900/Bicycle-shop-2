@@ -3,7 +3,7 @@ import { Brand } from "../modules/brands/brand.model.js";
 import { BicycleDetail } from "../modules/bicycle-details/bicycle-detail.model.js";
 import { Order } from "../modules/orders/order.model.js";
 import { Customer } from "../modules/customers/customer.model.js";
-
+import { OrderItem } from "../modules/order-items/order-item.model.js"
 
 export function defineAssociations() {
   console.log("Associations defined"); 
@@ -15,4 +15,7 @@ export function defineAssociations() {
 
   Customer.hasMany(Order, { foreignKey: "customerId", as: "orders" });
   Order.belongsTo(Customer, { foreignKey: "customerId", as: "customer" });
+
+  Order.belongsToMany(Bicycle, {through: OrderItem, foreignKey: "orederId", otherKey: "bicycleId" as "bicycles",});
+  Bicycle.belongsToMany(Order, {through: OrderItem, foreignKey: "bicycleId", otherKey: "orderId" as "orders",});
 }
