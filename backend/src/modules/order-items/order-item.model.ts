@@ -9,6 +9,50 @@ import {
 import { sequelize } from "../../config/database.js";
 
 export class OrderItem extends Model<InferAttributes<OrderItem>, InferCreationAttributes<OrderItem>> {
-    declare id: CreationOptional<Number>;
-
+    declare id: CreationOptional<number>;
+    declare orderId: number;
+    declare bicycleId: number;
+    declare quantity: number;
+    declare unitPrice: number;
+    declare createdAt: CreationOptional<Date>;
+    declare updatedAt: CreationOptional<Date>;
 }
+
+OrderItem.init({
+    id: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        autoIncrement: true,
+        primaryKey: true,
+    },
+    orderId: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
+    },
+    bicycleId: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
+    },
+    quantity: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        validate: { min: 1 }
+
+    },
+    unitPrice: {
+        type: DataTypes.DECIMAL(10, 2),
+        allowNull: false,
+        validate: { min: 0 }
+    },
+    createdAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+    updatedAt: {
+        type: DataTypes.DATE,
+        allowNull: false,
+    },
+}, {
+    sequelize,
+    tableName: "order_items",
+    modelName: "OrderItem",
+    timestamps: true,
+})
