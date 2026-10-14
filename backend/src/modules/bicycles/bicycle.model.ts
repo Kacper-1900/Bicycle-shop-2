@@ -13,8 +13,9 @@ export class Bicycle extends Model<
 > {
     declare id: CreationOptional<number>;
     declare brandId: number;
-    declare model: string | null;
+    declare modelId: number;
     declare description: string | null;
+    declare weight: number;
     declare price: number;
     declare stock: CreationOptional<number>;
     declare createdAt: CreationOptional<Date>;
@@ -35,13 +36,20 @@ Bicycle.init(
             onUpdate: "CASCADE",
             onDelete: "RESTRICT",
         },
-        model: {
-            type: DataTypes.STRING(150),
-            allowNull: true,
+        modelId: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+            references: { model: "models", key: "id" },
+            onUpdate: "CASCADE",
+            onDelete: "RESTRICT",
         },
         description: {
             type: DataTypes.TEXT,
             allowNull: true,
+        },
+        weight:{
+            type: DataTypes.DECIMAL,
+            allowNull: false
         },
         price: {
             type: DataTypes.DECIMAL(10, 2),

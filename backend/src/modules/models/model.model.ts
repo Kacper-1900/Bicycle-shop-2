@@ -8,9 +8,9 @@ import {
 
 import { sequelize } from "../../config/database.js";
 
-export class model extends Model<
-  InferAttributes<model>,
-  InferCreationAttributes<model>
+export class models extends Model<
+  InferAttributes<models>,
+  InferCreationAttributes<models>
 > {
   declare id: CreationOptional<number>;
   declare name: string;
@@ -18,7 +18,7 @@ export class model extends Model<
   declare updatedAt: CreationOptional<Date>;
 }
 
-model.init(
+models.init(
   {
     id: {
       type: DataTypes.INTEGER.UNSIGNED,

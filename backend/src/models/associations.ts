@@ -4,6 +4,7 @@ import { BicycleDetail } from "../modules/bicycle-details/bicycle-detail.model.j
 import { Order } from "../modules/orders/order.model.js";
 import { Customer } from "../modules/customers/customer.model.js";
 import { OrderItem } from "../modules/order-items/order-item.model.js"
+import { models } from "../modules/models/model.model.js";
 
 export function defineAssociations() {
   console.log("Associations defined"); 
@@ -24,4 +25,7 @@ export function defineAssociations() {
 
   Bicycle.hasMany(OrderItem, { foreignKey: "bicycleId", as: "items" });
   OrderItem.belongsTo(Bicycle, { foreignKey: "bicycleId", as: "bicycle" });
+
+  models.hasMany(Bicycle, { foreignKey: "modelId", as: "bicycles" });
+  Bicycle.belongsTo(models, { foreignKey: "modelId", as: "exactModel" });
 }
