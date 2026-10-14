@@ -5,11 +5,33 @@ const router = Router();
 
 router.get("/", BicycleController.getAll);
 
+// Rutas específicas: primero
+router.get(
+    "/with-brand-and-model",
+    BicycleController.getAllWithBrandAndModel
+);
+
+router.get(
+    "/price-and-weight",
+    BicycleController.getAllByPriceAndWeight
+)
+
+router.get(
+    "/eagerly/frame-material/:frameMaterial",
+    BicycleController.getAllEagerlyByFrameMaterial
+);
+
+router.get(
+    "/eagerly/:id",
+    BicycleController.getEagerlyById
+);
+
+router.get(
+    "/price-higher-than-hundred",
+    BicycleController.getAllByPriceSearch
+);
+// Rutas genéricas: después
 router.get("/:id", BicycleController.getById);
-
-router.get("/eagerly/:id", BicycleController.getEagerlyById);
-
-router.get("/eagerly/frame-material/:frameMaterial", BicycleController.getAllEagerlyByFrameMaterial);
 
 router.post("/", BicycleController.create);
 
