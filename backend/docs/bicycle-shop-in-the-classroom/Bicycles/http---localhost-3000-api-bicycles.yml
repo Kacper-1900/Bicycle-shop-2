@@ -11,10 +11,11 @@ http:
     data: |-
       {
         "brandId": 1,
-        "model": "Brum",
+        "modelId": 1,
         "description": "lol",
-        "price": 993,
-        "stock": 102
+        "weight": 34,
+        "price": 95,
+        "stock": 22
       }
   auth: inherit
 

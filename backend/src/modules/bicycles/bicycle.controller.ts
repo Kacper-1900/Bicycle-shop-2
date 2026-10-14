@@ -23,6 +23,8 @@ export class BicycleController {
         try {
             const id = Number(req.params.id);
             const bicycle = await BicycleService.findById(id);
+            console.log("Ejecuando: getById");
+
             if (!bicycle) {
                 res.status(404).json({
                     message: "Bicycle not found",
@@ -77,17 +79,18 @@ export class BicycleController {
         next: NextFunction
     ) {
         try {
-            const { brandId, model, description, price, stock } = req.body;
-            if (!brandId || price === undefined) {
+            const { brandId, modelId, description, weight, price, stock } = req.body;
+            if (!brandId || !modelId || price === undefined) {
                 res.status(400).json({
-                    message: "brandId and price are required",
+                    message: "brandId, modelId, and price are required",
                 });
                 return;
             }
             const bicycle = await BicycleService.create({
                 brandId,
-                model,
+                modelId,
                 description,
+                weight,
                 price,
                 stock,
             });
@@ -139,6 +142,41 @@ export class BicycleController {
             res.status(204).send();
         } catch (error) {
             next(error);
+        }
+    }
+
+    static async getAllWithBrandAndModel(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ) {
+        try {
+            console.log("EJECUTANDO: getAllWithBrandAndModel");
+
+            const bicycles = await BicycleService.getAllWithBrandAndModel();
+            res.json(bicycles);
+        } catch (error) {
+            next(error);
+        }
+    }
+    static async getAllByPriceSearch(req: Request, res: Response, next: NextFunction) {
+        try {
+            const bikes = await BicycleService.getAllWherePriceIsHigherThanHoundred();
+
+            res.json(bikes);
+        } catch (error) {
+            next(error)
+        }
+
+    }
+
+    static async getAllByPriceAndWeight(req: Request, res: Response, next: NextFunction){
+        try {
+            const bikes = await BicycleService.getAllPriceLowerThanHoundedAndWeightLowerThanTwenty();
+
+            res.json(bikes)
+        } catch (error) {
+            next(error)
         }
     }
 }
